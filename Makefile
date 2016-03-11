@@ -6,7 +6,7 @@
 #    By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/25 17:44:49 by qle-guen          #+#    #+#              #
-#    Updated: 2016/03/11 17:43:59 by qle-guen         ###   ########.fr        #
+#    Updated: 2016/03/11 20:50:12 by qle-guen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,13 @@ BUILDDIR	=	build
 LIBDIR		=	lib
 INCLUDE		=	include
 NAME		=	euler
+PBDIR		=	$(SRCDIR)/problems
 TARGET		=	$(BINDIR)/$(NAME)
+
+# Check if PB is set, if not set it to last problem
+ifndef PB
+PB			=	$(shell ls $(PBDIR) | tail -n1 | cut -d. -f1 | sed 's/problem//')
+endif
 
 # Compiler options
 CC			=	gcc
@@ -36,10 +42,10 @@ WHITE		=	"\033[0;37m"
 END			=	"\033[0m"
 
 # Source files
-SRC			+=	problem$(PB).o
 SRC			+=	main.c
 SRC			+=	common.c
 SRC			+=	intlist.c
+SRC			+=	factors.c
 
 # Libraries
 LIBSRC		+=
@@ -50,6 +56,7 @@ LIBS		=	$(addprefix $(BUILDDIR)/, $(addsuffix .a,$(LIBSRC)))
 all: $(TARGET)
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.c $(BUILDDIR)
+	@$(CC) $(CFLAGS) -c $(PBDIR)/problem$(PB).c -o $(BUILDDIR)/problem.o
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo $(GREEN)+++ obj: $(YELLOW)$(@F)$(END)
 
@@ -59,7 +66,7 @@ $(BUILDDIR)/%.a: $(LIBDIR)/% $(BUILDDIR)
 	@echo $(GREEN)+++ lib: $(CYAN)$(@F)$(END)
 
 $(TARGET): $(LIBS) $(OBJECTS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LIBFLAGS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(BUILDDIR)/problem.o $(LIBFLAGS)
 	@echo $(GREEN)+++ bin: $(BLUE)$(NAME)$(END)
 
 $(BUILDDIR):
@@ -70,7 +77,7 @@ clean:
 	@rm -f $(LIBS)
 	@echo $(RED)--- lib: $(CYAN)$(LIBS:$(BUILDDIR)/%=%)$(END)
 	@rm -f $(OBJECTS)
-	@echo $(RED)--- obj: $(YELLOW)$(OBJECTS:$(BUILDDIR)/%=%)$(END)
+	@echo $(RED)--- obj: $(YELLOW)$(OBJECTS:$(BUILDDIR)/%=%) $(BUILDDIR)/problem.o$(END)
 	@rm -rf build/
 
 .PHONY:	fclean

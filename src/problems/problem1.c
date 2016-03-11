@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 23:16:24 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/03/11 17:34:58 by qle-guen         ###   ########.fr       */
+/*   Updated: 2016/03/11 19:21:32 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ int			multiple_3_or_5
 }
 
 int			problem_test
-	(void **result, size_t result_size)
+	(void **result, int *type)
 {
 	int		test_return;
 
+	*type = 0;
 	if (!(*result))
-		*result = malloc(result_size);
+		*result = malloc(sizeof(int));
 	test_return = sum_between(&multiple_3_or_5, 3, 9);
-	memcpy(*result, &test_return, result_size);
+	memcpy(*result, &test_return, sizeof(int));
 	return (test_return == 23);
 }
 
