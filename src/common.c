@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 23:32:00 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/03/11 17:05:56 by qle-guen         ###   ########.fr       */
+/*   Updated: 2016/03/11 22:04:02 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int				sum_between
 }
 
 int				even
-	(int x)
+	(t_int x)
 {
 	return (!(x % 2));
 }
 
 int				true
-	(int x)
+	(t_int x)
 {
 	return (1);
 }

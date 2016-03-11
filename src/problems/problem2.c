@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 12:45:44 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/03/11 19:22:12 by qle-guen         ###   ########.fr       */
+/*   Updated: 2016/03/11 22:17:41 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,22 @@ int				problem_test
 }
 
 int			problem_solve
-	(void)
+	(void **result, int *type)
 {
 	t_intlist	*fiblst;
+	int			x;
 
+	*type = 0;
 	fiblst = fib(
 		lambda(int, (int n, int fn),
 		{
 			return (fn < 4000000);
 		}
 	));
-	return (cond_sum(fiblst, &even));
+	x = cond_sum(fiblst, &even);
+	*result = malloc(sizeof(int));
+	if (!*result)
+		return (0);
+	memcpy(*result, &x, sizeof(x));
+	return (1);
 }

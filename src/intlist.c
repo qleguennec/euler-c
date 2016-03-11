@@ -6,14 +6,14 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 12:20:44 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/03/11 19:27:28 by qle-guen         ###   ########.fr       */
+/*   Updated: 2016/03/11 22:17:45 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <euler.h>
 
 t_intlist			*intlist_new
-	(int data)
+	(t_int data)
 {
 	t_intlist		*ret;
 
@@ -25,7 +25,7 @@ t_intlist			*intlist_new
 }
 
 t_intlist			*intlist_addfront
-	(t_intlist **l, int data)
+	(t_intlist **l, t_int data)
 {
 	t_intlist		*new;
 
@@ -42,7 +42,7 @@ t_intlist			*intlist_addfront
 }
 
 t_intlist			*intlist_addback
-	(t_intlist **l, int data)
+	(t_intlist **l, t_int data)
 {
 	t_intlist		*new;
 
@@ -60,10 +60,10 @@ t_intlist			*intlist_addback
 	return (new);
 }
 
-int					cond_sum
-	(t_intlist *l, int (*f) (int))
+t_int				cond_sum
+	(t_intlist *l, int (*f) (t_int))
 {
-	int				result;
+	t_int				result;
 	t_intlist		*l1;
 
 	result = 0;
@@ -77,7 +77,7 @@ int					cond_sum
 	return (result);
 }
 
-int					sum
+t_int				sum
 	(t_intlist *l)
 {
 	return (cond_sum(l, &true));
@@ -116,7 +116,7 @@ void				intlist_print
 	write(0, "[", 1);
 	while (l)
 	{
-		printf("%d", l->data);
+		printf("%lu", l->data);
 		fflush(0);
 		if (l->next)
 			write(0, ", ", 2);

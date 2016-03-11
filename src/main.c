@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 17:07:17 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/03/11 19:37:11 by qle-guen         ###   ########.fr       */
+/*   Updated: 2016/03/11 22:22:26 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,31 @@ void			exit_msg
 	exit(ret);
 }
 
+void			print_result
+	(void *result, int result_type)
+{
+	switch (result_type)
+	{
+		case 0:
+			printf("%d\n", *((int*)result));
+			break;
+		case 1:
+			intlist_print(result);
+			break;
+		case 2:
+			printf("%lu\n", *((t_int*)result));
+			break;
+		default:
+			exit_msg(42, "type error");
+	}
+}
+
 int				main
 	(int argc, char **argv)
 {
 	void	*result;
 	int		result_type;
+	int		ret;
 
 	result = NULL;
 	if (argc != 2)
@@ -40,17 +60,21 @@ int				main
 			NOK;
 			if (!result)
 				exit_msg(2, "got NULL result\n");
-			write(0, "got result", 11);
-			switch(result_type)
-			{
-				case 0: printf("%d\n", *((int*)result));
-				case 1: intlist_print(result);
-			}
+			write(0, "got result: ", 12);
+			print_result(result, result_type);
 			return (2);
 		}
 	}
 	else if (!(strcmp(argv[1], "solve")))
-		printf("%d\n", problem_solve());
+	{
+		ret = problem_solve(&result, &result_type);
+		if (ret != 1)
+		{
+			printf("solver returned: %d, exiting", ret);
+			return (ret);
+		}
+		print_result(result, result_type);
+	}
 	else
 		exit_msg(1, "unknown command");
 	return (0);

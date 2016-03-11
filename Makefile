@@ -6,7 +6,7 @@
 #    By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/25 17:44:49 by qle-guen          #+#    #+#              #
-#    Updated: 2016/03/11 20:50:12 by qle-guen         ###   ########.fr        #
+#    Updated: 2016/03/11 22:39:47 by qle-guen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ endif
 
 # Compiler options
 CC			=	gcc
-LIBFLAGS	=	-L$(BUILDDIR) $(subst lib,-l,$(LIBSRC))
+LIBFLAGS	=	-L$(BUILDDIR) $(subst lib,-l,$(LIBSRC)) -lm
 CFLAGS		=	-I$(INCLUDE) -Wall -Wextra -Werror -Wno-unused-parameter -Wno-unused-variable -g
 
 # Color output
@@ -89,9 +89,9 @@ fclean: clean
 re: fclean all
 
 .PHONY: test
-test: re
+test: all
 	@./euler test
 
 .PHONY: solve
-solve: re
+solve: all
 	@./euler solve

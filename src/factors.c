@@ -6,16 +6,16 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/11 18:49:48 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/03/11 20:38:17 by qle-guen         ###   ########.fr       */
+/*   Updated: 2016/03/11 21:57:31 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <euler.h>
 
 int					isprime
-	(int x)
+	(unsigned long x)
 {
-	int				i;
+	unsigned long	i;
 
 	i = 2;
 	while (i < x)
@@ -28,9 +28,9 @@ int					isprime
 }
 
 t_intlist			*prime_factors
-	(int x)
+	(unsigned long x)
 {
-	int				i;
+	unsigned long	i;
 	t_intlist		*l;
 
 	i = 2;
