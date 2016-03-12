@@ -6,7 +6,7 @@
 /*   By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/10 23:13:18 by qle-guen          #+#    #+#             */
-/*   Updated: 2016/03/11 22:38:58 by qle-guen         ###   ########.fr       */
+/*   Updated: 2016/03/12 01:50:49 by qle-guen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,9 @@ t_intlist				*fib(int (*f) (int, int));
 // factors.c
 int						isprime(t_int x);
 t_intlist				*prime_factors(t_int x);
+
+// digits.c
+size_t					digits_nb(t_int x, int base);
+int						digit_n(int x, int n);
 
 #endif

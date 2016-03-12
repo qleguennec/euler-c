@@ -6,7 +6,7 @@
 #    By: qle-guen <qle-guen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/25 17:44:49 by qle-guen          #+#    #+#              #
-#    Updated: 2016/03/11 23:13:48 by qle-guen         ###   ########.fr        #
+#    Updated: 2016/03/12 00:44:54 by qle-guen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRC			+=	main.c
 SRC			+=	common.c
 SRC			+=	intlist.c
 SRC			+=	factors.c
+SRC			+=	digits.c
 
 # Libraries
 LIBSRC		+=
